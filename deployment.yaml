@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: min-app
+spec:
+  selector:
+    matchLabels:
+      app: min-app
+  template:
+    metadata:
+      labels:
+        app: min-app
+    spec:
+      containers:
+        - name: min-app
+          image: kube-hello
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PUBLIC_HOSTNAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
