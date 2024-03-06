@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: min-app
-          image: kube-hello
+          image: ghcr.io/progitas/kube-hello
           imagePullPolicy: IfNotPresent
           resources:
             limits:
