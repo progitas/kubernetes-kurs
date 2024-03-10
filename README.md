@@ -1,5 +1,9 @@
 # Kubernetes kurs med JrC
 
+> Velkommen til denne demoen med Kubernetes!
+> Her skal vi deploye en enkel docker-app til kubernetes og gjøre den tilgjengelig for omverdenen :)
+> For å kunne gjøre dette trenger du `minikube` og `kubectl` installert.
+
 ## Steg 1
 
 `kubectl apply -f deployment.yaml`
@@ -32,3 +36,7 @@ Kjør `kubectl get pods` så ser vi at vi har 4 kopier av appen vår kjørende
 
 Prøv å refreshe siden nå og se at navnet vil bytte mellom de fire _podsa_ som appen din kjører
 på.
+
+> [!TIP]
+> Ser du hvilken strategi kubernetes bruker for load-balancing? (load-balancing = fordeling av
+> arbeid på tilgjengelige ressurser.)
