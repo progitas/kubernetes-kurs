@@ -7,6 +7,7 @@ spec:
   selector:
     matchLabels:
       app: min-app
+  replicas: 2
   template:
     metadata:
       labels:
@@ -27,3 +28,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+            - name: PUBLIC_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-env
+                  key: ENVIRONMENT
+            - name: PUBLIC_MY_ENV
+              value: fix-me

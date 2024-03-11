@@ -1,42 +1,33 @@
 # Kubernetes kurs med JrC
 
-> Velkommen til denne demoen med Kubernetes!
-> Her skal vi deploye en enkel docker-app til kubernetes og gjøre den tilgjengelig for omverdenen :)
-> For å kunne gjøre dette trenger du `minikube` og `kubectl` installert.
+# Del 2
+
+Hurra! Teamet vårt har jobbet bra og er klare med en ny versjon av appen vår :strong:.
+Som DevOps ansvarlig er det nå vår jobb å oppgradere til den nye versjonen av appen :)
+
+> Som du kanskje ser så har vi steppet opp infrastrukturen vår, som nå har to _miljøer_ og bruker
+> **kustomize** for å gjenbruke konfigurasjonen på tvers av miljøene.
+
+> For å deploye hele miljøet kan du bruke kommandoen `kubectl apply -k overlays/staging`
 
 ## Steg 1
 
-`kubectl apply -f deployment.yaml`
+Første steget er selvsagt å deploye den nye versjonen til staging miljøet vårt. Åpne
+`overlays/kustomization.yaml` og endre docker image tagen til den nye versjonen og redeploy appen!
+
+**Den nye versjonen av Docker bildet har taggen _v2_**
 
 ## Steg 2
 
-Pass på at du har minikube ingress addonen: `minikube addons enable ingress`
+Gratulerer! Du har nå klart å deploye den nye versjonen i staging miljøet :star-eyes:.
 
-Deretter trenger vi en _service_ som definerer de ulike tjenestene en app can tilgjengeligjøre til
-verden:
+QA testerne sier at alt ser bra ut så det er på tide å rulle appen ut i produksjon. MEN, som du ser
+så manger prod konfigurasjonen til appen. Det er din jobb å legge til konfigurasjonen for prod
+miljøet. Den skal oppfylle følgende:
 
-`kubectl apply -f service.yaml`
+- Prod appen skal leve i _namespacet_ `production`
+- Den skal ha 4 replicas (kopier)
+- Når du kjører appen skal det under http://localhost/config stå `PRODUCTION` under miljø (du har
+  ikke lov til å endre noen filer under base/ mappen)
 
-Nå må vi også ha en _ingress_ som tar et _entrypoint_ og ruter trafikken til servicene vi har i
-clusteret:
-
-`kubectl apply -f ingress.yaml`
-
-For å se appen må du kjøre `minikube tunnel <IP>` (IPen får du fra `kubectl get ingress`)
-
-Nå kan du åpne http://localhost og se at appen kjører!
-
-## Steg 3
-
-Nå skal vi se på hvor lett det er å skalere opp appen vår i clusteret.
-
-`kubectl scale deployment min-app --replicas 4`
-
-Kjør `kubectl get pods` så ser vi at vi har 4 kopier av appen vår kjørende
-
-Prøv å refreshe siden nå og se at navnet vil bytte mellom de fire _podsa_ som appen din kjører
-på.
-
-> [!TIP]
-> Ser du hvilken strategi kubernetes bruker for load-balancing? (load-balancing = fordeling av
-> arbeid på tilgjengelige ressurser.)
+> For å deploye prod miljøet kan du bruke kommandoen `kubectl apply -k overlays/prod`
