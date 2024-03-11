@@ -1,4 +1,4 @@
-# Kubernetes kurs med JrC
+# Kubernetes-kurs med JrC
 
 > Velkommen til denne demoen med Kubernetes!
 > Her skal vi deploye en enkel docker-app til kubernetes og gjøre den tilgjengelig for omverdenen :)
@@ -40,3 +40,6 @@ på.
 > [!TIP]
 > Ser du hvilken strategi kubernetes bruker for load-balancing? (load-balancing = fordeling av
 > arbeid på tilgjengelige ressurser.)
+
+_Når du er ferdig med alle stagene kan du hoppe over til [DEL
+2](https://github.com/progitas/kubernetes-kurs/tree/del-2)_
