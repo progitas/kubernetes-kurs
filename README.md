@@ -10,6 +10,10 @@ Som DevOps ansvarlig er det nå vår jobb å oppgradere til den nye versjonen av
 
 > For å deploye hele miljøet kan du bruke kommandoen `kubectl apply -k overlays/staging`
 
+> [!WARNING]
+> Hvis du får en feil om at "namespace ikke eksisterer", kan du enkelt lage denne med:
+> `kubectl create namespace staging`. (Det samme gjelder for Steg 2!)
+
 ## Steg 1
 
 Første steget er selvsagt å deploye den nye versjonen til staging miljøet vårt. Åpne
@@ -26,8 +30,9 @@ så manger prod konfigurasjonen til appen. Det er din jobb å legge til konfigur
 miljøet. Den skal oppfylle følgende:
 
 - Prod appen skal leve i _namespacet_ `production`
+- Appen skal være tilgjengelig under domenet `kube.prod`
 - Den skal ha 4 replicas (kopier)
-- Når du kjører appen skal det under http://localhost/config stå `PRODUCTION` under miljø (du har
+- Når du kjører appen skal det under http://kube.prod/config stå `PRODUCTION` under miljø (du har
   ikke lov til å endre noen filer under base/ mappen)
 
 > For å deploye prod miljøet kan du bruke kommandoen `kubectl apply -k overlays/prod`

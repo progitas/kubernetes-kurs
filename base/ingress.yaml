@@ -5,7 +5,8 @@ metadata:
   name: ingress
 spec:
   rules:
-    - http:
+    - host: kube.dev
+      http:
         paths:
           - pathType: Prefix
             path: /
