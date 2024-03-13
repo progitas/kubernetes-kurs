@@ -2,7 +2,7 @@
 
 # Del 2
 
-Hurra! Teamet vårt har jobbet bra og er klare med en ny versjon av appen vår :strong:.
+Hurra! Teamet vårt har jobbet bra og er klare med en ny versjon av appen vår.
 Som DevOps ansvarlig er det nå vår jobb å oppgradere til den nye versjonen av appen :)
 
 > Som du kanskje ser så har vi steppet opp infrastrukturen vår, som nå har to _miljøer_ og bruker
@@ -23,7 +23,7 @@ Første steget er selvsagt å deploye den nye versjonen til staging miljøet vå
 
 ## Steg 2
 
-Gratulerer! Du har nå klart å deploye den nye versjonen i staging miljøet :star-eyes:.
+Gratulerer! Du har nå klart å deploye den nye versjonen i staging miljøet.
 
 QA testerne sier at alt ser bra ut så det er på tide å rulle appen ut i produksjon. MEN, som du ser
 så manger prod konfigurasjonen til appen. Det er din jobb å legge til konfigurasjonen for prod
@@ -34,5 +34,8 @@ miljøet. Den skal oppfylle følgende:
 - Den skal ha 4 replicas (kopier)
 - Når du kjører appen skal det under http://kube.prod/config stå `PRODUCTION` under miljø (du har
   ikke lov til å endre noen filer under base/ mappen)
+
+(Grunnet limitations i minikube så er det litt vanskelig å se begge prod/staging appene samtidig
+lokalt. Du kan bare kjøre `kubectl -n staging delete ingress ingress`) for å kunne se prod appen.
 
 > For å deploye prod miljøet kan du bruke kommandoen `kubectl apply -k overlays/prod`
