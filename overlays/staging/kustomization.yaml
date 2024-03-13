@@ -19,15 +19,3 @@ configMapGenerator:
   - name: app-env
     envs:
       - app.env
-
-# Override ingress domain
-patches:
-  # This patch will edit the ingress hostname
-  - patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: kube.dev
-    target:
-      kind: Ingress
-      name: ingress
-      version: v1
